@@ -1,4 +1,0 @@
-environment:
-  url: https://www.navigator.ba
-  web:
-    driver: chrome

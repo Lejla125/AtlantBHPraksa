@@ -15,6 +15,8 @@ Automated test scripts in this repository are created using Ruby, RSpec, Capybar
 
 **Programming language :** Ruby 2.5.1, installed was Ruby Version Manager
 
+**Web browser :** Google Chrome 70.0.3538.77-1
+
 In order to separate each project with its own Ruby version and all required gems to run the script, Ruby Version Manager (short rvm) is used. It enables the user to write his own plain text document file with all required gems and automatically downloads specified gems.
 
 A helpful gem managing tool is Bundler. Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed.

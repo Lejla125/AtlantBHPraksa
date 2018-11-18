@@ -21,8 +21,11 @@ In order to separate each project with its own Ruby version and all required gem
 
 A helpful gem managing tool is Bundler. Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed.
 
-`bundle install`- command will create a Gemfile.lock (if it didn't exist already) and will fetch all remote sources, resolve dependencies and install all needed gems. If the Gemfile.lock does exist Bundler will fetch all remote sources, but use the dependencies specified in the Gemfile.lock instead of resolving dependencies.
-Other useful commands when working with Bundler are `bundle update` and `bundle exec rspec spec/<file_path>`.
+`bundle install`-Command will create a Gemfile.lock (if it didn't exist already) and will fetch all remote sources, resolve dependencies and install all needed gems. If the Gemfile.lock does exist Bundler will fetch all remote sources, but use the dependencies specified in the Gemfile.lock instead of resolving dependencies.
+
+`bundle update` - updates the Gemfile.lock by downloading/erasing needed or excess gems
+
+`bundle exec rspec spec/<file_path>`- executes Ruby scripts
 
 RSpec is a behavior driven development tool focusing on the application's behavior when some actions are applied.
 Capybara enables testing web applications by simulating how a real user would interact with an app. It is a web-based automation framework.

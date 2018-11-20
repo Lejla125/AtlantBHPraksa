@@ -23,7 +23,9 @@ A helpful gem managing tool is Bundler. Bundler provides a consistent environmen
 
 `bundle install`-Command will create a Gemfile.lock (if it didn't exist already) and will fetch all remote sources, resolve dependencies and install all needed gems. If the Gemfile.lock does exist Bundler will fetch all remote sources, but use the dependencies specified in the Gemfile.lock instead of resolving dependencies.
 
-`bundle update` - updates the Gemfile.lock by downloading/erasing needed or excess gems
+`bundle update <gem_name>` - upgrades/downgrades a gem specified in Gemfile.lock
+
+`bundle update` - allows user to erase gems from Gemfile.lock if necessary
 
 `bundle exec rspec spec/<file_path>`- executes Ruby scripts
 
@@ -31,4 +33,4 @@ RSpec is a behavior driven development tool focusing on the application's behavi
 Capybara enables testing web applications by simulating how a real user would interact with an app. It is a web-based automation framework.
 Selenium is a layer under Capybara, a helpful tool for web browsing automation.
 
-Folder navigator_test_suite contains all necessary configuration files as well as Ruby scripts. Test scripts are to be found within the spec folder, organized in smoke_test and regression_suite folders. Currently only automated test scripts for smoke tests are written and stored in smoke_test folder. To run the scripts you have to locate scripts on your computer and enter bundle exec rspec spec/smoke_test/search_place.rb or .../search_street.rb into terminal.
+Folder navigator_test_suite contains all necessary configuration files as well as Ruby scripts. Test scripts are to be found within the spec folder, organized in smoke_test and regression_suite folders. Currently only automated test scripts for smoke tests are written and stored in smoke_test folder. To run the scripts you have to locate scripts on your computer and enter `bundle exec rspec spec/smoke_test/<script_name>.rb` into terminal.

@@ -7,10 +7,6 @@ class Main < HomePage
     Sidebar.new(@session)
   end
 
-  def get_dropdown
-    DropDown.new(@session)
-  end
-
   def get_marker_pane
     MarkerPane.new(@session)
   end

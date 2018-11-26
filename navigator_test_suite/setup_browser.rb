@@ -34,6 +34,7 @@ class SetupBrowser
 
     @session.driver.browser.manage.window.move_to(0,0)
     @session.driver.browser.manage.window.size = Selenium::WebDriver::Dimension.new(1440,821)
+    @session.driver.browser.manage.window.maximize()
     @homepage.goto_homepage(self.url)
     @homepage
   end

@@ -1,19 +1,14 @@
 require './spec_helper'
+require './shared_context'
 
 street_name = "Grbavička"
 
 describe "Search street name" do
-
-  before(:all) do
-    @navigation = @homepage.get_main.get_navigation
-    @sidebar = @homepage.get_main.get_sidebar
-    @pane = @homepage.get_main.get_marker_pane
-  end
+  include_context "shared methods"
 
   context "Enter street into the search bar and click on item from the dropdown menu" do
     it "finds searched street: #{street_name} and shows on sidebar" do
-      @navigation.fill_in_searchbox(street_name)
-      @navigation.click_on_dropdown_item
+      navigation_search(street_name)
       expect(@sidebar.exists_with_item?(street_name)).to eq true
     end
   end

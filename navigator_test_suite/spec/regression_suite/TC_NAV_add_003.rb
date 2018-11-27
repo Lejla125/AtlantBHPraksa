@@ -9,24 +9,24 @@ street_name = "Franca Lehara"
 house_number = "2"
 alternative_address = "u sklopu Alta Shopping centra na  -1 spratu"
 tag_text ="SUPER MARKET"
-telephone_number = "033256850"
-mobile_number = "061455632"
-fax_number = "080090822"
-website_url = "https://alta.ba/shopping/bingo-plus/"
-facebook_url = "https://www.facebook.com/altashopping/?__tn__=%2Cd%2CP-R&eid=ARAU1ykSWP813ddP_U0mksny6DVQOHO4qwk6J_0k86305lAtJV1v1Hi3jQDnFBiZP1FgCNVPBQuIpfne"
-instagram_url = "https://www.instagram.com/altashoppingcenter/"
-wikipedia_url = "https://bs.wikipedia.org/wiki/Bingo_"
-youtube_url = "https://www.youtube.com/channel/UCw2vHFtUwQl2GwwWV7-ekqQ"
-email_address = "marketing@confluence.ba"
-twitter_url = "https://twitter.com/alta_center"
-forsquare_url = "https://foursquare.com/v/alta-shopping-center/4d0cd70ef393224b28cc18ee/photos"
-tripadvisor_url = "https://www.tripadvisor.com/Attraction_Review-g294450-d2272399-Reviews-Alta_Shopping_Center-Sarajevo_Sarajevo_Canton.html"
+telephone_number = "hjkl"
+mobile_number = "06145"
+fax_number = "080-//;"
+website_url = "https:"
+facebook_url = "jkllllmnbvghjk"
+instagram_url = "00000"
+wikipedia_url = "///../l;;."
+youtube_url = "none"
+email_address = "1243456"
+twitter_url = " "
+forsquare_url = ",,,,23"
+tripadvisor_url = "l;.,;"
 instagram_hashtag = "#NaPravomMjestu"
 wifi_password = "bingo12345"
 wifi_name = "AltaShoppingCenter"
 place_comment = "Slogan Binga je \"Kralj dobrih cijena!\""
 
- describe "POSITIVE TEST CASE: Add new full data place" do
+ describe "NEGATIVE TEST CASE: Add new full invalid data place" do
    include_context "shared methods"
 
    context "Open add new object form" do
@@ -43,7 +43,7 @@ place_comment = "Slogan Binga je \"Kralj dobrih cijena!\""
 
    context "Click object's category and enter tag text" do
      it "clicks \"Kupovina\" category and enters: #{tag_text} in tag field" do
-      expect(fill_new_object_form_tag("7",tag_text)).to eq true
+       expect(fill_new_object_form_tag("7",tag_text)).to eq true
      end
    end
 
@@ -62,9 +62,7 @@ place_comment = "Slogan Binga je \"Kralj dobrih cijena!\""
    context "Enter additional place info" do
      it "enters telephone number, add social media links, Wi-Fi info, credit cards, picture, comment and clicks \"Kreiraj\" button" do
        fill_form_socialnet(telephone_number,mobile_number,fax_number,website_url,facebook_url,instagram_url,wikipedia_url,youtube_url,email_address,twitter_url,forsquare_url,tripadvisor_url,instagram_hashtag,wifi_password,wifi_name,place_comment)
-       @form.click_cancel
-       navigation_search("Bingo Plus - Alta")
-       expect(@pane.finds_item?).to eq true
+       expect(@form.error_message_appears?("Forma sadrži nevalidne podatke. Molimo ispravite i pokušajte ponovo")).to eq true
      end
    end
  end

@@ -20,7 +20,7 @@ describe "NEGATIVE TEST CASE: Add no data place" do
        @form.scroll("//input[@id=\"poi_phone\"]")
        @form.scroll("//input[@id=\"poi_web\"]")
        @form.click_create
-       @form.error_message_appears?("Forma sadrži nevalidne podatke. Molimo ispravite i pokušajte ponovo")
+       expect(@form.error_message_appears?("Forma sadrži nevalidne podatke. Molimo ispravite i pokušajte ponovo")).to eq true
     end
   end
 end

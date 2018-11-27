@@ -81,7 +81,7 @@ class NewObjectForm < Main
   end
 end
 
-  #METODA ZA SCROLL PO FORMI 
+  #METODA ZA SCROLL PO FORMI
   def scroll(element_xpath)
     @session.within(:page_body) do
       dragger = @session.find(:dragger)
@@ -132,6 +132,16 @@ end
   def fill_fax_number(number)
     @session.within(:new_object_form) do
       @session.find("//input[@id=\"poi_fax\"]").set(number)
+    end
+  end
+
+  def check_numbers_fields
+    @session.within(:new_object_form) do
+      if(@session.find("//input[@id=\"poi_phone\"][@style=\"border-color: rgb(185, 74, 72);\"]") && @session.find("//input[@id=\"poi_mobile_phone\"][@style=\"border-color: rgb(185, 74, 72);\"]") && @session.find("//input[@id=\"poi_fax\"][@style=\"border-color: rgb(185, 74, 72);\"]"))
+        return true
+      else
+        return false
+      end
     end
   end
 
@@ -229,9 +239,15 @@ end
     end
   end
 
+  def click_cancel
+    @session.within(:new_object_form) do
+      @session.find("//button[@class=\"btn cancel\"]").click
+    end
+  end
+
   def error_message_appears?(message)
     @session.within(:new_object_form) do
-      @session.find("//div[@class=\"row validation-error-msg\"]").text == message
+      true if @session.find("//div[@class=\"row validation-error-msg\"]").text == message
     end
   end
 end

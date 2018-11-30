@@ -1,17 +1,15 @@
 require './spec_helper'
-require './shared_context'
+
+#This test script adds no data place leaving every form field empty.
 
 describe "NEGATIVE TEST CASE: Add no data place" do
-  include_context "shared methods"
 
   before(:all) do
+    @navigation = @homepage.get_main.get_navigation
     @form = @homepage.get_main.get_new_object_form
   end
 
-  context "Open add new object form" do
-    it "clicks on \"Kreiraj objekat\" item and checks if empty form appears" do
-      expect(open_new_object_form).to eq true
-    end
+  include_context "Open add new object form" do
   end
 
   context "Click \"Kreiraj\" button at the bottom of the form" do
@@ -19,7 +17,7 @@ describe "NEGATIVE TEST CASE: Add no data place" do
        @form.scroll("//textarea[@id=\"poi_description\"]")
        @form.scroll("//input[@id=\"poi_phone\"]")
        @form.scroll("//input[@id=\"poi_web\"]")
-       @form.click_create
+       @form.click_create_cancel("create")
        expect(@form.error_message_appears?("Forma sadrži nevalidne podatke. Molimo ispravite i pokušajte ponovo")).to eq true
     end
   end

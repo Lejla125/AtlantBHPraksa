@@ -6,11 +6,7 @@ describe "NEGATIVE TEST CASE: Verify the comments/suggestions section" do
     @navigation = @homepage.get_main.get_navigation
   end
 
-  context "Open comments/suggestions form" do
-    it "clicks on \"Predlozi ideju – Posalji komentar\" item and checks if empty form appears" do
-      @navigation.click_comments_item
-      expect(@navigation.finds_comments_form?).to eq true
-    end
+  include_context "Open comments/suggestions form" do
   end
 
   context "Fill in the empty form and click send button" do

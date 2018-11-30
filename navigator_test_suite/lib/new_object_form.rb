@@ -117,91 +117,91 @@ end
     end
   end
 
-  def fill_telephone_number(number)
+  def whours_error_appears?
+    true if @session.find("//div[@class=\"alertify-dialog\"]/article/p[@class=\"alertify-message\"]")
+  end
+
+  def remove_whours_error
+    @session.within("//div[@class=\"alertify-dialog\"]") do
+      @session.find("//button[@id=\"alertify-ok\"]").click
+    end
+  end
+
+  def fill_phone_number(phone_type,number)
     @session.within(:new_object_form) do
+      case phone_type
+    when "telephone"
       @session.find("//input[@id=\"poi_phone\"]").set(number)
-    end
-  end
-
-  def fill_mobile_number(number)
-    @session.within(:new_object_form) do
+    when "mobile"
       @session.find("//input[@id=\"poi_mobile_phone\"]").set(number)
-    end
-  end
-
-  def fill_fax_number(number)
-    @session.within(:new_object_form) do
+    when "fax"
       @session.find("//input[@id=\"poi_fax\"]").set(number)
-    end
-  end
-
-  def check_numbers_fields
-    @session.within(:new_object_form) do
-      if(@session.find("//input[@id=\"poi_phone\"][@style=\"border-color: rgb(185, 74, 72);\"]") && @session.find("//input[@id=\"poi_mobile_phone\"][@style=\"border-color: rgb(185, 74, 72);\"]") && @session.find("//input[@id=\"poi_fax\"][@style=\"border-color: rgb(185, 74, 72);\"]"))
-        return true
-      else
-        return false
       end
     end
   end
 
-  def fill_weblink(link)
+  def check_numbers_fields(phone_type)
     @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_web\"]").set(link)
+      case phone_type
+      when "telephone"
+        true if @session.find("//div[@class=\"span3\"]/input[@id=\"poi_phone\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "mobile"
+        true if @session.find("//div[@class=\"span3\"]/input[@id=\"poi_mobile_phone\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "fax"
+         true if @session.find("//div[@class=\"span3\"]/input[@id=\"poi_fax\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+       end
+     end
+  end
+
+  def fill_link(type,link)
+    @session.within(:new_object_form) do
+      case type
+      when "web"
+        @session.find("//input[@id=\"poi_web\"]").set(link)
+      when "facebook"
+        @session.find("//input[@id=\"poi_facebook_url\"]").set(link)
+      when "instagram"
+        @session.find("//input[@id=\"poi_instagram_url\"]").set(link)
+      when "wikipedia"
+        @session.find("//input[@id=\"poi_wikipedia_url\"]").set(link)
+      when "youtube"
+        @session.find("//input[@id=\"poi_youtube_url\"]").set(link)
+      when "email"
+        @session.find("//input[@id=\"poi_email\"]").set(link)
+      when "twitter"
+        @session.find("//input[@id=\"poi_twitter_url\"]").set(link)
+      when "foursquare"
+        @session.find("//input[@id=\"poi_foursqare_url\"]").set(link)
+      when "tripadvisor"
+        @session.find("//input[@id=\"poi_tripadvisor_url\"]").set(link)
+      when "hashtag"
+        @session.find("//input[@id=\"poi_instagram_hashtag\"]").set(link)
+      end
     end
   end
 
-  def fill_fblink(link)
+  def check_link_field(type)
     @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_facebook_url\"]").set(link)
-    end
-  end
-
-  def fill_iglink(link)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_instagram_url\"]").set(link)
-    end
-  end
-
-  def fill_wikilink(link)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_wikipedia_url\"]").set(link)
-    end
-  end
-
-  def fill_ytlink(link)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_youtube_url\"]").set(link)
-    end
-  end
-
-  def fill_email(adress)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_email\"]").set(adress)
-    end
-  end
-
-  def fill_twitterlink(link)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_twitter_url\"]").set(link)
-    end
-  end
-
-  def fill_fsquarelink(link)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_foursqare_url\"]").set(link)
-    end
-  end
-
-  def fill_tripadvisorlink(link)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_tripadvisor_url\"]").set(link)
-    end
-  end
-
-  def fill_ighashtag(link)
-    @session.within(:new_object_form) do
-      @session.find("//input[@id=\"poi_instagram_hashtag\"]").set(link)
+      case type
+      when "web"
+        true if @session.find("//input[@id=\"poi_web\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "facebook"
+        true if @session.find("//input[@id=\"poi_facebook_url\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "instagram"
+        true if @session.find("//input[@id=\"poi_instagram_url\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "wikipedia"
+        true if @session.find("//input[@id=\"poi_wikipedia_url\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "youtube"
+        true if @session.find("//input[@id=\"poi_youtube_url\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "email"
+        true if @session.find("//input[@id=\"poi_email\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "twitter"
+        true if @session.find("//input[@id=\"poi_twitter_url\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "foursquare"
+        true if @session.find("//input[@id=\"poi_foursqare_url\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      when "tripadvisor"
+        true if @session.find("//input[@id=\"poi_tripadvisor_url\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+      end
     end
   end
 
@@ -233,15 +233,14 @@ end
     end
   end
 
-  def click_create
+  def click_create_cancel(which)
     @session.within(:new_object_form) do
-      @session.find("//button[@class=\"btn btn-success\"]").click
-    end
-  end
-
-  def click_cancel
-    @session.within(:new_object_form) do
-      @session.find("//button[@class=\"btn cancel\"]").click
+      case which
+      when "create"
+        @session.find("//button[@class=\"btn btn-success\"]").click
+      when "cancel"
+        @session.find("//button[@class=\"btn cancel\"]").click
+      end
     end
   end
 

@@ -81,7 +81,29 @@ class NewObjectForm < Main
   end
 end
 
-  #METODA ZA SCROLL PO FORMI
+  def new_scroll(element_xpath)
+    @session.within(:page_body) do
+      slider = @session.driver.browser.find_element(:xpath, "//div[@class=\"mCSB_scrollTools\"]/div[@class=\"mCSB_draggerContainer\"]/div[@class=\"mCSB_dragger\"]")
+      current_attempt = 1
+      max_attempts = 10
+      begin
+        while (current_attempt < max_attempts) do
+          current_attempt = current_attempt + 1
+          @session.driver.browser.action.click_and_hold(slider).perform
+          @session.driver.browser.action.move_by(0, 200).perform
+          @session.driver.browser.action.release.perform
+          @session.find(element_xpath)
+
+          puts "Element found: #{element_xpath}"
+          break
+        end
+      rescue
+        puts "Element not found in attempt #{current_attempt}, move slider again..."
+        retry
+      end
+    end
+  end
+
   def scroll(element_xpath)
     @session.within(:page_body) do
       dragger = @session.find(:dragger)

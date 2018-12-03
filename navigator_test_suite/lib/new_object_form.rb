@@ -5,6 +5,12 @@ class NewObjectForm < Main
     end
   end
 
+  def check_object_name
+    @session.within(:new_object_form) do
+      true if @session.find("//input[@id=\"poi_name\"][@style=\"border-color: rgb(185, 74, 72);\"]")
+    end
+  end
+
   def fill_city_name(name)
     @session.within(:new_object_form) do
       @session.find("//input[@id=\"poi_city_name\"]").set(name)
@@ -60,6 +66,12 @@ class NewObjectForm < Main
     end
   end
 
+  def category_error_message_appears?(message)
+    @session.within(:new_object_form) do
+      true if @session.find("//div[@class=\"categories-error-msg\"]").text == message
+    end
+  end
+
   def fill_tag(text)
     @session.within(:new_object_form) do
       @session.find("//input[@type=\"text\"][@class=\"ui-widget-content ui-autocomplete-input\"]").set(text)
@@ -81,7 +93,7 @@ class NewObjectForm < Main
   end
 end
 
-  def new_scroll(element_xpath)
+  def new_scroll(element_xpath,direction)
     @session.within(:page_body) do
       slider = @session.driver.browser.find_element(:xpath, "//div[@class=\"mCSB_scrollTools\"]/div[@class=\"mCSB_draggerContainer\"]/div[@class=\"mCSB_dragger\"]")
       current_attempt = 1
@@ -90,7 +102,11 @@ end
         while (current_attempt < max_attempts) do
           current_attempt = current_attempt + 1
           @session.driver.browser.action.click_and_hold(slider).perform
+          if(direction == "up")
+          @session.driver.browser.action.move_by(0, -200).perform
+          else
           @session.driver.browser.action.move_by(0, 200).perform
+          end
           @session.driver.browser.action.release.perform
           @session.find(element_xpath)
 
@@ -101,14 +117,6 @@ end
         puts "Element not found in attempt #{current_attempt}, move slider again..."
         retry
       end
-    end
-  end
-
-  def scroll(element_xpath)
-    @session.within(:page_body) do
-      dragger = @session.find(:dragger)
-      area = @session.find(element_xpath)
-      dragger.click.drag_to(area)
     end
   end
 

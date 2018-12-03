@@ -61,7 +61,3 @@ end
 Capybara.add_selector(:tag) do
   xpath {"//ul[@class=\"ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all\"]/li[@class=\"ui-menu-item\"]/a"}
 end
-
-Capybara.add_selector(:dragger) do
-  xpath {"//div[@class=\"mCSB_scrollTools\"]/div[@class=\"mCSB_draggerContainer\"]/div[@class=\"mCSB_dragger\"]"}
-end

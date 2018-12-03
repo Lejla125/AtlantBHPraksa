@@ -1,5 +1,6 @@
 require './spec_helper'
 
+
 place_name = "jshdskjkp"
 invalid_data_msg = "Žao nam je. Nismo uspjeli pronaći niti jedan rezultat za traženu pretragu."
 

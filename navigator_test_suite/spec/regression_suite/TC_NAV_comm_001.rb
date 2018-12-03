@@ -1,13 +1,13 @@
 require './spec_helper'
 
+
 describe "POSITIVE TEST CASE: Verify the comments/suggestions section" do
 
   before(:all) do
     @navigation = @homepage.get_main.get_navigation
   end
 
-  include_context "Open comments/suggestions form" do
-  end
+  include_context "Open comments/suggestions form"
 
   context "Fill in the empty form and send comment" do
     it "fills in the form and sends comment to the dev team" do

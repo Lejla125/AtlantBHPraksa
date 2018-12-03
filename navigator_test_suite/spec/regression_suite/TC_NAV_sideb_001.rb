@@ -1,5 +1,6 @@
 require './spec_helper'
 
+
 describe "POSITIVE TEST CASE: Choose a sidebar item and click on it" do
   before(:all) do
     @sidebar = @homepage.get_main.get_sidebar

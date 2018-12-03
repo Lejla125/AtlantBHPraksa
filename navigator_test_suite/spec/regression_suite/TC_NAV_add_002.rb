@@ -35,25 +35,8 @@ place_comment = "Slogan Binga je \"Kralj dobrih cijena!\""
    end
 
    include_context "Open add new object form"
-
-   include_context "Fill new object form",place_name,city_name,postal_code,street_name,house_number,alternative_address,category,tag_text do
-   end
-
-   context "Click tag text and add working hours" do
-     it "clicks #{tag_text} from dropdown menu and adds working hours" do
-       @form.click_tag_text(tag_text)
-       @form.scroll("//textarea[@id=\"poi_description\"]")
-      expect(fill_new_object_form_whours(tag_text)).to eq true
-     end
-   end
-
-   context "Enter additional place info" do
-     it "enters telephone number, add social media links, Wi-Fi info, credit cards, picture, comment and clicks \"Kreiraj\" button" do
-       fill_form_socialnet(false,telephone_number,mobile_number,fax_number,website_url,facebook_url,instagram_url,wikipedia_url,youtube_url,email_address,twitter_url,forsquare_url,tripadvisor_url,instagram_hashtag,wifi_password,wifi_name,place_comment)
-       @form.click_create_cancel("cancel")
-       @navigation.fill_in_searchbox("Bingo Plus - Alta")
-       @navigation.click_on_dropdown_item
-       expect(@pane.finds_item?).to eq true
-     end
-   end
+   include_context "Fill new object details",place_name,city_name,postal_code,street_name,house_number,alternative_address,category
+   include_context "Choose object category",category,tag_text
+   include_context "Click tag text and add working hours",tag_text,false
+   include_context "Enter additional place info",false,telephone_number,mobile_number,fax_number,website_url,facebook_url,instagram_url,wikipedia_url,youtube_url,email_address,twitter_url,forsquare_url,tripadvisor_url,instagram_hashtag,wifi_password,wifi_name,place_comment
  end

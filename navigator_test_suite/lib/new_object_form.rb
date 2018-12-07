@@ -98,6 +98,7 @@ end
       slider = @session.driver.browser.find_element(:xpath, "//div[@class=\"mCSB_scrollTools\"]/div[@class=\"mCSB_draggerContainer\"]/div[@class=\"mCSB_dragger\"]")
       current_attempt = 1
       max_attempts = 10
+      Capybara.default_max_wait_time = 5
       begin
         while (current_attempt < max_attempts) do
           current_attempt = current_attempt + 1

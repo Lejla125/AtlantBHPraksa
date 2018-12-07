@@ -33,4 +33,5 @@ RSpec is a behavior driven development tool focusing on the application's behavi
 Capybara enables testing web applications by simulating how a real user would interact with an app. It is a web-based automation framework.
 Selenium is a layer under Capybara, a helpful tool for web browsing automation.
 
-Folder navigator_test_suite contains all necessary configuration files as well as Ruby scripts. Test scripts are to be found within the spec folder, organized in smoke_test and regression_suite folders. Currently only automated test scripts for smoke tests are written and stored in smoke_test folder. To run the scripts you have to locate scripts on your computer and enter `bundle exec rspec spec/smoke_test/<script_name>.rb` into terminal.
+Folder navigator_test_suite contains all necessary configuration files as well as Ruby scripts. Test scripts are to be found within the spec folder, organized in smoke_test and regression_suite folders. Automated test scripts for smoke tests are stored in smoke_test folder whereas regression test scripts are stored in regression_suite folder. To run the scripts you have to locate scripts on your computer and enter `bundle exec rspec spec/smoke_test/<script_name>.rb`  or
+`bundle exec rspec spec/regression_suite/<script_name>.rb` into terminal.

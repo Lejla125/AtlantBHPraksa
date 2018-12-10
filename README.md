@@ -35,4 +35,4 @@ Selenium is a layer under Capybara, a helpful tool for web browsing automation.
 
 Folder navigator_test_suite contains all necessary configuration files as well as Ruby scripts. Test scripts are to be found within the spec folder, organized in smoke_test and regression_suite folders. Automated test scripts for smoke tests are stored in smoke_test folder whereas regression test scripts are stored in regression_suite folder. To run the scripts you have to locate scripts on your computer and enter `bundle exec rspec spec/smoke_test/<script_name>.rb`  or
 `bundle exec rspec spec/regression_suite/<script_name>.rb` into terminal.
-This whole environment will be set on a virtual machine. Jenkins is used for automatically executing test scripts based on every GitHub push.
+This whole environment will be set on a virtual machine. Jenkins is used for automatically executing test scripts triggered by every GitHub push.

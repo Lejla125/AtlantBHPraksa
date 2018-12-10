@@ -27,12 +27,13 @@ shared_context "Click tag text and add working hours" do |tag_text,invalid|
       @form.fill_working_hours("kl;","/4")
       expect(@form.whours_error_appears?).to eq true
       @form.remove_whours_error
+      @form.new_scroll("//div[@class=\"row days-buttons\"]/button[@id=\"btn_day_sat\"]","up")
     end
     @form.click_saturday_bttn
     @form.fill_working_hours("09:00","22:00")
-    @form.click_sunday_bttn
-    @form.fill_working_hours("11:00","20:00")
-    @form.new_scroll("//input[@id=\"poi_phone\"]","down")
+    #@form.click_sunday_bttn
+    #@form.fill_working_hours("11:00","20:00")
+    #@form.new_scroll("//input[@id=\"poi_phone\"]","down")
     expect(@form.finds_working_hours_info?).to eq true
   end
 end
@@ -47,11 +48,13 @@ shared_context "Enter additional place info" do |validation,telephone_number,mob
     @form.fill_link("instagram",instagram_url)
     @form.fill_link("wikipedia",wikipedia_url)
     @form.fill_link("youtube",youtube_url)
+    @form.new_scroll("//input[@id=\"poi_email\"]","up")
     @form.fill_link("email",email_address)
     @form.fill_link("twitter",twitter_url)
     @form.fill_link("foursquare",forsquare_url)
     @form.fill_link("tripadvisor",tripadvisor_url)
     @form.fill_link("hashtag",instagram_hashtag)
+    @form.new_scroll("//input[@id=\"poi_has_wifi\"]","down")
     @form.fill_wifi_info(wifi_password,wifi_name)
     @form.fill_credit_cards_info
     @form.upload_picture

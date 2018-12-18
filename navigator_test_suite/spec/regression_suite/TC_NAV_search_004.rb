@@ -1,4 +1,5 @@
 require './spec_helper'
+require 'shared_context/navigation_search_sc'
 
 
 street_name = "Marka Marulića"

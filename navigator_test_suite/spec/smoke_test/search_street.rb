@@ -1,4 +1,5 @@
 require './spec_helper'
+require 'shared_context/navigation_search_sc'
 
 
 street_name = "Grbavička"
@@ -11,7 +12,7 @@ describe "Search street name" do
     @pane = @homepage.get_main.get_marker_pane
   end
 
-  include_context "Fill search bar and check sidebar",street_name 
+  include_context "Fill search bar and check sidebar",street_name
 
   context "Click on street name from sidebar main and check if the map zoomed in" do
     it "clicks on item: #{street_name} and zooms in map" do

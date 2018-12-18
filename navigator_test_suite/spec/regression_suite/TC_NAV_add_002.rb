@@ -1,4 +1,6 @@
 require './spec_helper'
+require 'shared_context/open_place_form_sc'
+require 'shared_context/fill_place_form_sc'
 
 
 place_name = "Bingo Plus – Alta"
@@ -9,6 +11,7 @@ house_number = "2"
 alternative_address = "u sklopu Alta Shopping centra na  -1 spratu"
 category = "7"
 tag_text ="SUPER MARKET"
+working_hours = ["09:00","22:00"]
 telephone_number = "033256850"
 mobile_number = "061455632"
 fax_number = "080090822"
@@ -24,6 +27,7 @@ tripadvisor_url = "https://www.tripadvisor.com/Attraction_Review-g294450-d227239
 instagram_hashtag = "#NaPravomMjestu"
 wifi_password = "bingo12345"
 wifi_name = "AltaShoppingCenter"
+picture = "bingo.jpg"
 place_comment = "Slogan Binga je \"Kralj dobrih cijena!\""
 
  describe "POSITIVE TEST CASE: Add new full valid data place" do
@@ -37,6 +41,6 @@ place_comment = "Slogan Binga je \"Kralj dobrih cijena!\""
    include_context "Open add new object form"
    include_context "Fill new object details",place_name,city_name,postal_code,street_name,house_number,alternative_address,category
    include_context "Choose object category",category,tag_text
-   include_context "Click tag text and add working hours",tag_text,false
-   include_context "Enter additional place info",false,telephone_number,mobile_number,fax_number,website_url,facebook_url,instagram_url,wikipedia_url,youtube_url,email_address,twitter_url,forsquare_url,tripadvisor_url,instagram_hashtag,wifi_password,wifi_name,place_comment
+   include_context "Click tag text and add working hours",tag_text,false,working_hours
+   include_context "Enter additional place info",false,telephone_number,mobile_number,fax_number,website_url,facebook_url,instagram_url,wikipedia_url,youtube_url,email_address,twitter_url,forsquare_url,tripadvisor_url,instagram_hashtag,wifi_password,wifi_name,picture,place_comment
  end

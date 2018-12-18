@@ -20,17 +20,17 @@ shared_context "Choose object category" do |category,tag_text|
   end
 end
 
-shared_context "Click tag text and add working hours" do |tag_text,invalid|
+shared_context "Click tag text and add working hours" do |tag_text,invalid,working_hours|
   it "clicks #{tag_text} from dropdown menu and adds working hours" do
     @form.click_tag_text(tag_text)
     if (invalid)
       @form.fill_working_hours("kl;","/4")
       expect(@form.whours_error_appears?).to eq true
       @form.remove_whours_error
-      @form.new_scroll("//div[@class=\"row days-buttons\"]/button[@id=\"btn_day_sat\"]","up")
+      @form.scroll_to_element("//div[@class=\"row days-buttons\"]/button[@id=\"btn_day_sat\"]","up")
     end
     @form.click_saturday_bttn
-    @form.fill_working_hours("09:00","22:00")
+    @form.fill_working_hours(working_hours[0],working_hours[1])
     #@form.click_sunday_bttn
     #@form.fill_working_hours("11:00","20:00")
     #@form.new_scroll("//input[@id=\"poi_phone\"]","down")
@@ -38,7 +38,7 @@ shared_context "Click tag text and add working hours" do |tag_text,invalid|
   end
 end
 
-shared_context "Enter additional place info" do |validation,telephone_number,mobile_number,fax_number,website_url,facebook_url,instagram_url,wikipedia_url,youtube_url,email_address,twitter_url,forsquare_url,tripadvisor_url,instagram_hashtag,wifi_password,wifi_name,place_comment|
+shared_context "Enter additional place info" do |validation,telephone_number,mobile_number,fax_number,website_url,facebook_url,instagram_url,wikipedia_url,youtube_url,email_address,twitter_url,forsquare_url,tripadvisor_url,instagram_hashtag,wifi_password,wifi_name,picture,place_comment|
   it "enters telephone number, add social media links, Wi-Fi info, credit cards, picture, comment and clicks \"Kreiraj\" button" do
     @form.fill_phone_number("telephone",telephone_number)
     @form.fill_phone_number("mobile",mobile_number)
@@ -48,16 +48,16 @@ shared_context "Enter additional place info" do |validation,telephone_number,mob
     @form.fill_link("instagram",instagram_url)
     @form.fill_link("wikipedia",wikipedia_url)
     @form.fill_link("youtube",youtube_url)
-    @form.new_scroll("//input[@id=\"poi_email\"]","up")
+    @form.scroll_to_element("//input[@id=\"poi_email\"]","up")
     @form.fill_link("email",email_address)
     @form.fill_link("twitter",twitter_url)
     @form.fill_link("foursquare",forsquare_url)
     @form.fill_link("tripadvisor",tripadvisor_url)
     @form.fill_link("hashtag",instagram_hashtag)
-    @form.new_scroll("//input[@id=\"poi_has_wifi\"]","down")
+    @form.scroll_to_element("//input[@id=\"poi_has_wifi\"]","down")
     @form.fill_wifi_info(wifi_password,wifi_name)
     @form.fill_credit_cards_info
-    @form.upload_picture
+    @form.upload_picture(picture)
     @form.fill_comment(place_comment)
     @form.click_create_cancel("create")
     if (validation)

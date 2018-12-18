@@ -1,4 +1,5 @@
 require './spec_helper'
+require 'shared_context/open_comments_sc'
 
 
 describe "NEGATIVE TEST CASE: Verify the comments/suggestions section" do
@@ -13,7 +14,7 @@ describe "NEGATIVE TEST CASE: Verify the comments/suggestions section" do
     it "fills in the form and checks invalid data info" do
       @navigation.set_name_and_surname("Lejla Dzaferbegovic")
       @navigation.set_email("kl;;'")
-      @navigation.click_Kritika
+      @navigation.click_kritika
       @navigation.click_send
       expect(@navigation.email_borders_red?).to eq true
       expect(@navigation.comment_borders_red?).to eq true

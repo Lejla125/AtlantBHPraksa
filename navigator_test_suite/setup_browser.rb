@@ -18,12 +18,16 @@ class SetupBrowser
 
   def load_browser
     browser = self.web['driver']
+    headless_mode = self.web['headless']
 
     Capybara.register_driver(browser.to_sym) do |app|
-      options = Selenium::WebDriver::Chrome::Options.new
-      options.add_argument('--headless')
-      #Capybara::Selenium::Driver.new(app, :browser => browser.to_sym, :switches => ["--headless","--disable-gpu"])
-      Capybara::Selenium::Driver.new(app, :browser => browser.to_sym, :options => options)
+      if (headless_mode)
+        options = Selenium::WebDriver::Chrome::Options.new
+        options.add_argument('--headless')
+        Capybara::Selenium::Driver.new(app, :browser => browser.to_sym, :options => options)
+      else
+        Capybara::Selenium::Driver.new(app, :browser => browser.to_sym)
+      end
     end
 
     # Set default values for Capybara

@@ -1,4 +1,6 @@
 require './spec_helper'
+require 'shared_context/open_place_form_sc'
+
 
 #This test script adds no data place leaving every form field empty.
 
@@ -13,7 +15,7 @@ describe "NEGATIVE TEST CASE: Add no data place" do
 
   context "Click \"Kreiraj\" button at the bottom of the form" do
     it "clicks \"Kreiraj\" button and waits for appropriate message" do
-       @form.new_scroll("//button[@class=\"btn btn-success\"]","down")
+       @form.scroll_to_element("//button[@class=\"btn btn-success\"]","down")
        @form.click_create_cancel("create")
        expect(@form.error_message_appears?("Forma sadrži nevalidne podatke. Molimo ispravite i pokušajte ponovo")).to eq true
     end
@@ -21,14 +23,14 @@ describe "NEGATIVE TEST CASE: Add no data place" do
 
   context "Check validation message for object category" do
     it "checks if object category validation message appears" do
-      @form.new_scroll("//button[@title=\"Odaberite kategoriju\"]","up")
+      @form.scroll_to_element("//button[@title=\"Odaberite kategoriju\"]","up")
       expect(@form.category_error_message_appears?("Molimo odaberite kategoriju kojoj objekat pripada")).to eq true
     end
   end
 
   context "Check borders for name text field" do
     it "checks if name field has red borders" do
-      @form.new_scroll("//input[@id=\"poi_name\"]","up")
+      @form.scroll_to_element("//input[@id=\"poi_name\"]","up")
       expect(@form.check_object_name).to eq true
     end
   end

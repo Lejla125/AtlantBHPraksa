@@ -7,7 +7,7 @@ class Navigation < Main
 
   def click_on_dropdown_item
     @session.within(:drop_down) do
-      @session.find("//div[@class=\"tt-suggestion\"]", :match => :first).click
+      @session.find("//div[@class=\"tt-suggestion\"]", :match => :prefer_exact).click
     end
    end
 
@@ -59,13 +59,13 @@ class Navigation < Main
     end
   end
 
-  def click_Pohvala
+  def click_pohvala
     @session.within(:comment_form) do
       @session.find("//input[@value=\"Pohvala\"]").click
     end
   end
 
-  def click_Kritika
+  def click_kritika
     @session.within(:comment_form) do
       @session.find("//input[@value=\"Kritika\"]").click
     end

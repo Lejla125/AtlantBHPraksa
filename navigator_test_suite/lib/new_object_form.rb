@@ -93,12 +93,11 @@ class NewObjectForm < Main
   end
 end
 
-  def new_scroll(element_xpath,direction)
+  def scroll_to_element(element_xpath,direction)
     @session.within(:page_body) do
       slider = @session.driver.browser.find_element(:xpath, "//div[@class=\"mCSB_scrollTools\"]/div[@class=\"mCSB_draggerContainer\"]/div[@class=\"mCSB_dragger\"]")
       current_attempt = 1
       max_attempts = 10
-      Capybara.default_max_wait_time = 5
       begin
         while (current_attempt < max_attempts) do
           current_attempt = current_attempt + 1
@@ -109,7 +108,7 @@ end
           @session.driver.browser.action.move_by(0, 200).perform
           end
           @session.driver.browser.action.release.perform
-          @session.find(element_xpath)
+          @session.find(element_xpath, wait: 5)
 
           puts "Element found: #{element_xpath}"
           break
@@ -252,9 +251,9 @@ end
     end
   end
 
-  def upload_picture
+  def upload_picture(picture)
     @session.within(:new_object_form) do
-      @session.attach_file('fileToUpload',File.absolute_path("bingo.jpg"))
+      @session.attach_file('fileToUpload',File.absolute_path(picture))
     end
   end
 

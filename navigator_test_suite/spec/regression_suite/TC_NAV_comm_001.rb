@@ -1,4 +1,5 @@
 require './spec_helper'
+require 'shared_context/open_comments_sc'
 
 
 describe "POSITIVE TEST CASE: Verify the comments/suggestions section" do
@@ -14,7 +15,7 @@ describe "POSITIVE TEST CASE: Verify the comments/suggestions section" do
       @navigation.set_name_and_surname("Lejla Dzaferbegovic")
       @navigation.set_email("lejla.dzaferbegovic@gmail.com")
       @navigation.set_comment("Test")
-      @navigation.click_Pohvala
+      @navigation.click_pohvala
       @navigation.click_send
       expect(@navigation.success_info_message_appears?("Hvala na poruci! Potrudit ćemo se da što prije reagujemo.")).to eq true
     end
